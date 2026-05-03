@@ -1,0 +1,59 @@
+{
+  "name": "pnw-mushroom-dashboard",
+  "version": "1.0.0",
+  "description": "Comprehensive PNW edible mushroom observation dashboard",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "node --watch server/index.js",
+    "dev:client": "vite",
+    "audit:species-counts": "node scripts/audit-species-counts.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/ --ext .js,.jsx",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/leaflet": "^1.9.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "autoprefixer": "^10.4.0",
+    "concurrently": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.0",
+    "globals": "^15.0.0",
+    "postcss": "^8.4.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^6.26.0",
+    "recharts": "^2.12.0",
+    "leaflet": "^1.9.0",
+    "react-leaflet": "^4.2.0",
+    "tailwindcss": "^3.4.0",
+    "vite": "^7.3.2"
+  },
+  "overrides": {
+    "brace-expansion": "1.1.13",
+    "flatted": "3.4.2",
+    "lodash": "4.18.1",
+    "path-to-regexp": "0.1.13",
+    "anymatch": {
+      "picomatch": "2.3.2"
+    },
+    "micromatch": {
+      "picomatch": "2.3.2"
+    },
+    "readdirp": {
+      "picomatch": "2.3.2"
+    },
+    "tinyglobby": {
+      "picomatch": "4.0.4"
+    }
+  }
+}

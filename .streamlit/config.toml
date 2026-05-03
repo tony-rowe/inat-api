@@ -1,0 +1,13 @@
+# PNW iNaturalist Observation Analytics - Business-focused theme
+[theme]
+primaryColor = "#1e3a5f"
+backgroundColor = "#f8fafc"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#1e293b"
+font = "sans serif"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

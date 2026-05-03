@@ -1,0 +1,247 @@
+const PNW_SPECIES = [
+  {
+    id: 'pacific-golden-chanterelle',
+    taxonId: 120443,
+    scientificName: 'Cantharellus formosus',
+    commonName: 'Pacific Golden Chanterelle',
+    description: 'The iconic golden chanterelle of the Pacific Northwest. Fruity aroma with a peppery taste. Found under Douglas fir and western hemlock.',
+    season: { start: 9, end: 12, peak: [10, 11] },
+    habitat: 'Coniferous forests, especially Douglas fir',
+    edibility: 'Choice edible',
+    color: '#F59E0B',
+    emoji: '🍄'
+  },
+  {
+    id: 'white-chanterelle',
+    taxonId: 54132,
+    scientificName: 'Cantharellus subalbidus',
+    commonName: 'White Chanterelle',
+    description: 'A pale to white chanterelle found exclusively in the Pacific Northwest. Prized for its delicate flavor and meaty texture.',
+    season: { start: 9, end: 12, peak: [10, 11] },
+    habitat: 'Coniferous forests, old-growth preferred',
+    edibility: 'Choice edible',
+    color: '#F5F5DC',
+    emoji: '🤍'
+  },
+  {
+    id: 'yellowfoot-chanterelle',
+    taxonId: 350511,
+    scientificName: 'Craterellus tubaeformis',
+    commonName: 'Yellowfoot Chanterelle',
+    description: 'Small but abundant winter chanterelle. Found in large troops among mossy conifer forests. Excellent dried.',
+    season: { start: 10, end: 2, peak: [11, 12] },
+    habitat: 'Mossy coniferous forests, rotting wood',
+    edibility: 'Good edible',
+    color: '#CA8A04',
+    emoji: '💛'
+  },
+  {
+    id: 'king-bolete',
+    taxonId: 48701,
+    scientificName: 'Boletus edulis',
+    commonName: 'King Bolete (Porcini)',
+    description: 'The king of edible mushrooms. Rich, nutty flavor. Found in both coniferous and deciduous forests throughout the PNW.',
+    season: { start: 8, end: 11, peak: [9, 10] },
+    habitat: 'Coniferous and mixed forests',
+    edibility: 'Choice edible',
+    color: '#8B4513',
+    emoji: '👑'
+  },
+  {
+    id: 'admirable-bolete',
+    taxonId: 790782,
+    scientificName: 'Aureoboletus mirabilis',
+    commonName: 'Admirable Bolete',
+    description: 'A distinctively dark-capped bolete growing on decaying hemlock logs. Unique among boletes for being saprotrophic.',
+    season: { start: 8, end: 11, peak: [9, 10] },
+    habitat: 'Decaying hemlock logs and stumps',
+    edibility: 'Good edible',
+    color: '#5C4033',
+    emoji: '🟤'
+  },
+  {
+    id: 'black-morel',
+    taxonId: 1467061,
+    scientificName: 'Morchella elata',
+    commonName: 'Black Morel',
+    description: 'Highly prized spring mushroom. Found in recently burned forests, disturbed soils, and old orchards. Honeycomb-like cap.',
+    season: { start: 3, end: 6, peak: [4, 5] },
+    habitat: 'Burn sites, disturbed soils, river bottoms',
+    edibility: 'Choice edible (must cook)',
+    color: '#3D2B1F',
+    emoji: '🔥'
+  },
+  {
+    id: 'chicken-of-the-woods',
+    taxonId: 53713,
+    scientificName: 'Laetiporus sulphureus',
+    commonName: 'Chicken of the Woods',
+    description: 'Bright orange and yellow shelf fungus. Meaty texture that substitutes for chicken in many recipes.',
+    season: { start: 5, end: 11, peak: [8, 9, 10] },
+    habitat: 'Dead or living hardwoods and conifers',
+    edibility: 'Good edible (young specimens)',
+    color: '#FF6B00',
+    emoji: '🐔'
+  },
+  {
+    id: 'hen-of-the-woods',
+    taxonId: 53714,
+    scientificName: 'Grifola frondosa',
+    commonName: 'Hen of the Woods (Maitake)',
+    description: 'Large, layered polypore with overlapping caps. Deeply savory flavor. Highly valued in both culinary and medicinal traditions.',
+    season: { start: 8, end: 11, peak: [9, 10] },
+    habitat: 'Base of oaks and other hardwoods',
+    edibility: 'Choice edible',
+    color: '#6B7280',
+    emoji: '🐓'
+  },
+  {
+    id: 'lions-mane',
+    taxonId: 49158,
+    scientificName: 'Hericium erinaceus',
+    commonName: "Lion's Mane",
+    description: 'Unmistakable cascading white spines. Seafood-like flavor reminiscent of lobster or crab. Studied for neuroprotective properties.',
+    season: { start: 8, end: 11, peak: [9, 10] },
+    habitat: 'Dead or wounded hardwoods, especially oak and maple',
+    edibility: 'Choice edible',
+    color: '#FAFAFA',
+    emoji: '🦁'
+  },
+  {
+    id: 'coral-tooth',
+    taxonId: 49162,
+    scientificName: 'Hericium coralloides',
+    commonName: 'Coral Tooth Fungus',
+    description: 'Beautiful branching white fungus resembling coral. Related to Lion\'s Mane with similar culinary qualities.',
+    season: { start: 8, end: 11, peak: [9, 10] },
+    habitat: 'Dead hardwood logs and stumps',
+    edibility: 'Good edible',
+    color: '#E8E8E8',
+    emoji: '🪸'
+  },
+  {
+    id: 'western-matsutake',
+    taxonId: 521711,
+    scientificName: 'Tricholoma murrillianum',
+    commonName: 'Western Matsutake',
+    description: 'Intensely aromatic mushroom prized in Japanese cuisine. Spicy-cinnamon scent. Found under conifers in sandy soils.',
+    season: { start: 9, end: 12, peak: [10, 11] },
+    habitat: 'Coniferous forests, sandy or pumice soils',
+    edibility: 'Choice edible',
+    color: '#D2B48C',
+    emoji: '🌲'
+  },
+  {
+    id: 'lobster-mushroom',
+    taxonId: 48215,
+    scientificName: 'Hypomyces lactifluorum',
+    commonName: 'Lobster Mushroom',
+    description: 'A parasitic fungus that transforms Russula and Lactarius into firm, red-orange, seafood-flavored delicacies.',
+    season: { start: 8, end: 10, peak: [9] },
+    habitat: 'Coniferous and mixed forests (parasitizes other mushrooms)',
+    edibility: 'Choice edible',
+    color: '#DC2626',
+    emoji: '🦞'
+  },
+  {
+    id: 'hedgehog-mushroom',
+    taxonId: 48641,
+    scientificName: 'Hydnum repandum',
+    commonName: 'Wood Hedgehog',
+    description: 'Easily identified by its tooth-like spines under the cap. Mild, sweet, nutty flavor. Excellent sautéed.',
+    season: { start: 9, end: 12, peak: [10, 11] },
+    habitat: 'Coniferous and mixed forests',
+    edibility: 'Choice edible',
+    color: '#FBBF24',
+    emoji: '🦔'
+  },
+  {
+    id: 'oyster-mushroom',
+    taxonId: 48494,
+    scientificName: 'Pleurotus ostreatus',
+    commonName: 'Oyster Mushroom',
+    description: 'One of the most widely cultivated and foraged mushrooms. Found year-round on dead hardwoods. Mild, anise-like aroma.',
+    season: { start: 10, end: 4, peak: [11, 12, 1] },
+    habitat: 'Dead or dying hardwoods, especially alder',
+    edibility: 'Good edible',
+    color: '#9CA3AF',
+    emoji: '🦪'
+  },
+  {
+    id: 'cauliflower-mushroom',
+    taxonId: 486226,
+    scientificName: 'Sparassis radicata',
+    commonName: 'Western Cauliflower Mushroom',
+    description: 'Large, ruffled, brain-like appearance. Can grow to enormous sizes. Mild noodle-like flavor and texture.',
+    season: { start: 8, end: 11, peak: [9, 10] },
+    habitat: 'Base of conifers, especially Douglas fir',
+    edibility: 'Good edible',
+    color: '#FEF3C7',
+    emoji: '🥦'
+  },
+  {
+    id: 'black-trumpet',
+    taxonId: 48607,
+    scientificName: 'Craterellus cornucopioides',
+    commonName: 'Black Trumpet',
+    description: 'The "horn of plenty" — a deeply flavored, almost truffle-like mushroom. Excellent dried. Notoriously hard to spot on the forest floor.',
+    season: { start: 10, end: 2, peak: [11, 12] },
+    habitat: 'Mossy hardwood and mixed forests, near oaks',
+    edibility: 'Choice edible',
+    color: '#1F2937',
+    emoji: '🎺'
+  },
+  {
+    id: 'shaggy-mane',
+    taxonId: 47392,
+    scientificName: 'Coprinus comatus',
+    commonName: 'Shaggy Mane',
+    description: 'Distinctive elongated cap with shaggy scales. Must be eaten soon after picking as it auto-digests (deliquesces) rapidly.',
+    season: { start: 9, end: 11, peak: [10] },
+    habitat: 'Disturbed soils, lawns, roadsides, gravel',
+    edibility: 'Good edible (eat immediately)',
+    color: '#E5E7EB',
+    emoji: '🧶'
+  },
+  {
+    id: 'giant-puffball',
+    taxonId: 57692,
+    scientificName: 'Calvatia gigantea',
+    commonName: 'Giant Puffball',
+    description: 'Unmistakable large white spheres up to 50cm across. Edible when flesh is pure white throughout. Mild flavor, great sliced and fried.',
+    season: { start: 8, end: 10, peak: [9] },
+    habitat: 'Meadows, pastures, open woodlands',
+    edibility: 'Good edible (when white inside)',
+    color: '#F9FAFB',
+    emoji: '⚪'
+  },
+  {
+    id: 'oregon-black-truffle',
+    taxonId: 125191,
+    scientificName: 'Leucangium carthusianum',
+    commonName: 'Oregon Black Truffle',
+    description: 'A winter truffle unique to the PNW. Intensely aromatic with fruity, pineapple-chocolate notes. Found underground near Douglas fir.',
+    season: { start: 11, end: 3, peak: [12, 1, 2] },
+    habitat: 'Underground near Douglas fir roots',
+    edibility: 'Choice edible',
+    color: '#292524',
+    emoji: '⬛'
+  },
+  {
+    id: 'oregon-white-truffle',
+    taxonId: 517784,
+    scientificName: 'Tuber oregonense',
+    commonName: 'Oregon White Truffle',
+    description: 'One of the finest North American truffles. Garlicky, herbaceous aroma. Found underground near Douglas fir in fall.',
+    season: { start: 10, end: 2, peak: [11, 12] },
+    habitat: 'Underground near Douglas fir roots',
+    edibility: 'Choice edible',
+    color: '#FDF4E7',
+    emoji: '⚪'
+  }
+];
+
+// Oregon (10) + Washington (46) only
+const PNW_PLACE_IDS = [10, 46];
+
+export { PNW_SPECIES, PNW_PLACE_IDS };

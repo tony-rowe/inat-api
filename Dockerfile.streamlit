@@ -1,0 +1,20 @@
+# PNW Streamlit Analytics - Part of single-stack Docker Compose
+# Build: docker compose build streamlit
+# Run:  docker compose up -d streamlit (or up -d for full stack)
+FROM python:3.12-slim
+
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+COPY requirements.txt /app/requirements.txt
+COPY streamlit /app/streamlit
+COPY .streamlit /app/.streamlit
+COPY dashboard/server/species.js /app/dashboard/server/species.js
+
+RUN python -m pip install --no-cache-dir -r /app/requirements.txt
+
+EXPOSE 8501
+
+CMD ["python", "-m", "streamlit", "run", "streamlit/app.py", "--server.address", "0.0.0.0", "--server.port", "8501", "--server.headless", "true"]

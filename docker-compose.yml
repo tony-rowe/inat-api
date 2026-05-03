@@ -1,0 +1,73 @@
+version: '3.8'
+
+# ============================================================
+# PNW Mushroom Dashboard - Single Stack (Dashboard + Streamlit)
+# ============================================================
+# Stack:
+#   - app (React + Express + Nginx): port 3060
+#   - streamlit (Analytics): port 8501
+#
+# Build and run entire stack:
+#   docker compose up -d --build
+#
+# Build only (no start):
+#   docker compose build
+#
+# Build and run with logs:
+#   docker compose up --build
+#
+# Rebuild just Streamlit:
+#   docker compose build streamlit
+#   docker compose up -d streamlit
+#
+# Stop all:
+#   docker compose down
+#
+# View logs:
+#   docker compose logs -f
+#   docker compose logs -f streamlit
+# ============================================================
+
+services:
+  # Main application - Node.js API + Nginx frontend
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mushroom-dashboard
+    ports:
+      - "3060:3060"
+    volumes:
+      - mushroom-data:/app/data
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3060/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Streamlit reporting companion app (orchestrated in same stack)
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: mushroom-streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - mushroom-data:/app/data
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  mushroom-data:
+    driver: local

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+data/
+certs/
+*.db
+*.db-wal
+*.db-shm
+*.pem
+*.key
+*.crt

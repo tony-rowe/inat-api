@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --map-height: 500px;
+  }
+
+  body {
+    background: #f0f7f0;
+    min-height: 100vh;
+    color: #1a2e1a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #e0f0e0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #86efac;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4ade80;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-gradient-to-br from-white/95 to-green-50/95 backdrop-blur-xl border border-green-300 rounded-2xl;
+    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+  .glass-card-hover:hover {
+    @apply border-mushroom-gold/60 shadow-lg;
+    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+
+  .stat-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    @apply bg-green-100 text-green-900 border border-green-300;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200;
+    @apply bg-mushroom-gold text-black hover:bg-yellow-500 active:scale-95 shadow-md;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200;
+    @apply text-green-800 hover:text-green-900 hover:bg-green-100;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200;
+    @apply text-green-700 hover:text-green-900 hover:bg-green-100;
+  }
+  .nav-link.active {
+    @apply text-mushroom-gold bg-mushroom-gold/20 border border-mushroom-gold/30 shadow-sm;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+  }
+}
+
+.leaflet-container {
+  background: #f0faf0 !important;
+  border-radius: 1rem;
+}
+
+.leaflet-tile-pane {
+  filter: saturate(1.0) brightness(1.1);
+}
+
+.leaflet-control-zoom a {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #166534 !important;
+  border-color: rgba(34, 197, 94, 0.5) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8) !important;
+  color: #4b5563 !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: #6b7280 !important;
+}
+
+.fire-tooltip {
+  background: rgba(255, 240, 240, 0.95) !important;
+  border: 1px solid rgba(239, 68, 68, 0.5) !important;
+  border-radius: 10px !important;
+  color: #b91c1c !important;
+  font-size: 12px !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2) !important;
+}
+
+.prediction-tooltip {
+  background: rgba(240, 255, 240, 0.95) !important;
+  border: 1px solid rgba(34, 197, 94, 0.5) !important;
+  border-radius: 12px !important;
+  color: #166534 !important;
+  font-size: 12px !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.2) !important;
+}
+.prediction-tooltip::before {
+  border-top-color: rgba(240, 255, 240, 0.95) !important;
+}
+
+.recharts-text {
+  fill: #4b5563 !important;
+  font-size: 11px !important;
+}
+
+.recharts-cartesian-grid line {
+  stroke: #d1d5db !important;
+}
