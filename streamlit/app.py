@@ -286,8 +286,14 @@ def save_tracked_mushrooms(mushrooms: dict[str, int]) -> None:
 def load_cached_observations(taxon_id: int) -> list[dict]:
     cache_file = DATA_DIR / f"taxon_{taxon_id}.json"
     if cache_file.exists():
-        with open(cache_file, "r", encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                if not content:
+                    return []
+                return json.loads(content)
+        except (json.JSONDecodeError, OSError, ValueError):
+            return []
     return []
 
 
